@@ -1,15 +1,14 @@
 import React from 'react';
-import {ImageProps, StyleSheet, View} from 'react-native';
-import {CustomImage, CustomButton, GlobalTextComponent} from '../index';
-import {images} from '../../utils/images';
+import {StyleSheet, View} from 'react-native';
 import {
   responsiveHeight,
   responsiveSize,
   responsiveWidth,
 } from '../../utils/helper';
 import {colors, fontSizes} from '../../utils/Schema';
+import {CustomButton, CustomImage, GlobalTextComponent} from '../index';
 type NewsComponentProps = {
-  newImage: ImageProps;
+  newImage: string;
   category: string;
   newTitle: string;
   writer: string;
@@ -26,7 +25,7 @@ const NewsComponent = ({
 }: NewsComponentProps) => {
   return (
     <CustomButton style={styles.container} onPress={handleOnPress}>
-      <CustomImage source={newImage} style={styles.imageStyle} />
+      <CustomImage source={{uri: newImage}} style={styles.imageStyle} />
       <View style={styles.leftSideContainerStyle}>
         <GlobalTextComponent text={category} style={styles.newCategoryStyle} />
         <GlobalTextComponent

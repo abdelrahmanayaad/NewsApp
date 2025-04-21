@@ -1,25 +1,35 @@
 import React from 'react';
-import {FlatList, ImageProps, View} from 'react-native';
-import {_testNewsData} from '../../utils/data';
+import {FlatList, View} from 'react-native';
+import useGetTopHeadline from '../../hooks/useGetTopHeadlines';
+import {images} from '../../utils/images';
+import ErrorComponent from './ErrorComponent';
+import Loader from './Loader';
 import TrendingNewsComponent from './TrendingNewsComponent';
 
 const AllTrendingNewsComponent = () => {
+  const {data, error, isError, isLoading} = useGetTopHeadline();
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <ErrorComponent error={error.message} />;
+  }
   type _renderItemsProps = {
     item: {
-      image: ImageProps;
+      urlToImage: string;
       title: string;
-      writer: string;
-      date: string;
+      author: string;
+      publishedAt: string;
     };
     index: number;
   };
-  const _renderItems = ({item, index}: _renderItemsProps) => {
+  const _renderArticles = ({item, index}: _renderItemsProps) => {
     return (
       <TrendingNewsComponent
-        newImage={item.image}
+        newImage={item.urlToImage ?? images.imagePlaceholder}
         newTitle={item.title}
-        writer={item.writer}
-        date={item.date}
+        writer={item.author}
+        date={item.publishedAt}
       />
     );
   };
@@ -28,8 +38,8 @@ const AllTrendingNewsComponent = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={_testNewsData}
-        renderItem={_renderItems}
+        data={data?.articles}
+        renderItem={_renderArticles}
       />
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageProps, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {
   responsiveHeight,
   responsiveSize,
@@ -12,7 +12,7 @@ import CustomImage from '../CustomImage';
 import GlobalTextComponent from '../GlobalTextComponent';
 
 type TrendingNewsComponentProps = {
-  newImage: ImageProps;
+  newImage: string;
   newTitle: string;
   writer: string;
   date: string;
@@ -28,17 +28,20 @@ const TrendingNewsComponent = ({
 }: TrendingNewsComponentProps) => {
   return (
     <View style={styles.container}>
-      <CustomImage source={newImage} style={styles.imageStyle} />
+      <CustomImage source={{uri: newImage}} style={styles.imageStyle} />
       <GlobalTextComponent
         style={styles.newTitleStyle}
         text={newTitle}
         numberOfLines={2}
       />
       <View style={styles.writerContainer}>
-        <GlobalTextComponent style={styles.writerNameDateStyle} text={writer} />
         <GlobalTextComponent
           style={styles.writerNameDateStyle}
-          text={`• ${date}`}
+          text={writer ?? 'Abdelrahman Ayad'}
+        />
+        <GlobalTextComponent
+          style={styles.writerNameDateStyle}
+          text={`• ${date.slice(0, 10)}`}
         />
       </View>
       <CustomButton

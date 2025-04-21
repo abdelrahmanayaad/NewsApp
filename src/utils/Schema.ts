@@ -8,6 +8,7 @@ const darkTheme = {
     black: '#000',
     disabledColor: '#EFEFEF',
     gray: '#A3A3A3',
+    red: '#FF0000',
   },
   fontSizes: {
     fs46: responsiveFontSize(46),
@@ -40,6 +41,7 @@ const lightTheme = {
     black: '#000',
     disabledColor: '#EFEFEF',
     gray: '#A3A3A3',
+    red: '#FF0000',
   },
   fontSizes: {
     fs46: responsiveFontSize(46),

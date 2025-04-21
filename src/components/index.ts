@@ -7,6 +7,8 @@ import NewsComponent from './UI/NewsComponent';
 import CustomImage from './CustomImage';
 import GlobalTextComponent from './GlobalTextComponent';
 import CustomButton from './CustomButton';
+import Loader from './UI/Loader';
+import ErrorComponent from './UI/ErrorComponent';
 
 export {
   AllNewsComponent,
@@ -18,4 +20,6 @@ export {
   CustomImage,
   GlobalTextComponent,
   CustomButton,
+  Loader,
+  ErrorComponent,
 };

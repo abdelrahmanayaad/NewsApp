@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TextProps, View} from 'react-native';
+import {Text, TextProps} from 'react-native';
 
 type GlobalTextComponentProps = {
   text?: string;
@@ -19,5 +19,3 @@ const GlobalTextComponent = ({
 };
 
 export default GlobalTextComponent;
-
-const styles = StyleSheet.create({});

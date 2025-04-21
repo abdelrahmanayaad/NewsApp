@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {colors, fontSizes, fontWeights} from '../../utils/Schema';
+import {StyleSheet, View} from 'react-native';
+import {fontSizes, fontWeights} from '../../utils/Schema';
 import {responsiveHeight, responsiveSize} from '../../utils/helper';
 import {icons} from '../../utils/images';
-import GlobalTextComponent from '../GlobalTextComponent';
 import CustomImage from '../CustomImage';
+import GlobalTextComponent from '../GlobalTextComponent';
 
 type TitleComponentProps = {
   title?: string;
