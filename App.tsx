@@ -1,15 +1,16 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {Fragment} from 'react';
+import {StatusBar} from 'react-native';
 import './global.css';
+import HomeScreen from './src/screens/HomeScreen';
+import {colors} from './src/utils/Schema';
 
 const App = () => {
   return (
-    <View>
-      <Text>News App</Text>
-    </View>
+    <Fragment>
+      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
+      <HomeScreen />;
+    </Fragment>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
