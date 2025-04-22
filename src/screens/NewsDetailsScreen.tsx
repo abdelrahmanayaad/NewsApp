@@ -12,7 +12,7 @@ import {
 import useNewsDetails from '../hooks/useNewsDetails';
 import RootStackParamList, {ReactNavigationProps} from '../navigation/types';
 import {responsiveHeight, responsiveSize} from '../utils/helper';
-import {icons} from '../utils/images';
+import {icons, images} from '../utils/images';
 import {colors, fontSizes} from '../utils/Schema';
 
 const NewsDetailsScreen = ({
@@ -42,7 +42,7 @@ const NewsDetailsScreen = ({
       <View style={styles.writerViewStyle}>
         <GlobalTextComponent
           style={styles.authorStyle}
-          text={data[0]?.author}
+          text={data[0]?.author ?? 'Abdelrahman Ayad'}
         />
         <GlobalTextComponent
           style={styles.dateStyle}
@@ -51,13 +51,13 @@ const NewsDetailsScreen = ({
       </View>
       <CustomButton onPress={handleClickOnNewsImage}>
         <CustomImage
-          source={{uri: data[0]?.urlToImage}}
+          source={{uri: data[0]?.urlToImage ?? images.imagePlaceholder}}
           style={styles.newsDetailsImageStyle}
         />
       </CustomButton>
       <GlobalTextComponent
         style={styles.descriptionStyle}
-        text={data[0]?.content}
+        text={data[0]?.content ?? data[0]?.title}
       />
     </View>
   );
