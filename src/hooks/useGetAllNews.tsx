@@ -6,11 +6,12 @@ const getAllNews = async (): Promise<allNewsType> => {
   const response = apiRequest({
     method: 'GET',
     url: 'top-headlines',
+    // url: 'everything',
     params: {
-      q: 'bitcoin',
       country: 'us',
-      from: '2025-04-21',
-      to: '2025-04-21',
+      // q: 'bitcoin',
+      // from: '2025-04-20',
+      // to: '2025-04-21',
     },
   });
   return (await response).data;

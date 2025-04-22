@@ -1,16 +1,9 @@
-import React, {Fragment} from 'react';
-import {StatusBar} from 'react-native';
+import React from 'react';
 import './global.css';
-import HomeScreen from './src/screens/HomeScreen';
-import {colors} from './src/utils/Schema';
+import AppContainer from './src/navigation/AppContainer';
 
 const App = () => {
-  return (
-    <Fragment>
-      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
-      <HomeScreen />;
-    </Fragment>
-  );
+  return <AppContainer />;
 };
 
 export default App;

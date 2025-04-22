@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, View} from 'react-native';
 import useGetTopHeadline from '../../hooks/useGetTopHeadlines';
@@ -8,6 +9,7 @@ import TrendingNewsComponent from './TrendingNewsComponent';
 
 const AllTrendingNewsComponent = () => {
   const {data, error, isError, isLoading} = useGetTopHeadline();
+  const navigation: any = useNavigation();
   if (isLoading) {
     return <Loader />;
   }
@@ -23,13 +25,18 @@ const AllTrendingNewsComponent = () => {
     };
     index: number;
   };
+  const handleOnPress = (title: string) => {
+    navigation.navigate('NewsDetailsScreen', {articleId: title});
+  };
   const _renderArticles = ({item, index}: _renderItemsProps) => {
     return (
       <TrendingNewsComponent
         newImage={item.urlToImage ?? images.imagePlaceholder}
         newTitle={item.title}
         writer={item.author}
-        date={item.publishedAt}
+        date={new Date(item.publishedAt).toDateString()}
+        // date={item.publishedAt}
+        handleOnPress={() => handleOnPress(item.title)}
       />
     );
   };

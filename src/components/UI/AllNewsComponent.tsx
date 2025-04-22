@@ -1,14 +1,16 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, ImageProps, StyleSheet, View} from 'react-native';
-import {_testNewsData} from '../../utils/data';
-import NewsComponent from './NewsComponent';
+import {FlatList, StyleSheet, View} from 'react-native';
 import useGetAllNews from '../../hooks/useGetAllNews';
-import Loader from './Loader';
-import ErrorComponent from './ErrorComponent';
 import {images} from '../../utils/images';
+import GlobalTextComponent from '../GlobalTextComponent';
+import ErrorComponent from './ErrorComponent';
+import Loader from './Loader';
+import NewsComponent from './NewsComponent';
 
 const AllNewsComponent = () => {
   const {data, isLoading, isError, error} = useGetAllNews();
+  const navigation: any = useNavigation();
   if (isLoading) return <Loader />;
   if (isError) return <ErrorComponent error={error.message} />;
   type _renderItemsProps = {
@@ -23,6 +25,11 @@ const AllNewsComponent = () => {
     };
     index: number;
   };
+
+  const handleOnPress = (title: string) => {
+    navigation.navigate('NewsDetailsScreen', {articleId: title});
+  };
+
   const _renderItems = ({item, index}: _renderItemsProps) => {
     return (
       <NewsComponent
@@ -30,21 +37,36 @@ const AllNewsComponent = () => {
         category={item.source.name}
         newTitle={item.title}
         writer={item.author ?? 'Abdelrahman Ayad'}
-        date={item.publishedAt.slice(0, 10)}
+        date={new Date(item.publishedAt).toDateString()}
+        // date={item.publishedAt.slice(0, 10)}
+        handleOnPress={() => handleOnPress(item.title)}
       />
     );
   };
   return (
     <View>
-      <FlatList
-        scrollEnabled={false}
-        data={data?.articles}
-        renderItem={_renderItems}
-      />
+      {data?.articles.length ? (
+        <FlatList
+          scrollEnabled={false}
+          data={data?.articles}
+          renderItem={_renderItems}
+        />
+      ) : (
+        <View style={styles.emptyView}>
+          <GlobalTextComponent text="No articles available !" />
+        </View>
+      )}
     </View>
   );
 };
 
-export default AllNewsComponent;
+const styles = StyleSheet.create({
+  emptyView: {
+    width: '100%',
+    height: '60%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
-const styles = StyleSheet.create({});
+export default AllNewsComponent;

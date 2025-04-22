@@ -1,6 +1,7 @@
 export const icons = {
   notification: require('../assets/Icons/notificaiton.png'),
   arrowRight: require('../assets/Icons/right-arrow.png'),
+  arrowBack: require('../assets/Icons/back.png'),
   search: require('../assets/Icons/search.png'),
 };
 

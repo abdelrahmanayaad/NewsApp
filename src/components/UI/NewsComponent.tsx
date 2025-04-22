@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: responsiveWidth(130),
     height: responsiveHeight(140),
+    borderRadius: 5,
   },
   leftSideContainerStyle: {
     justifyContent: 'space-between',
