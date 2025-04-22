@@ -6,10 +6,11 @@ import {images} from '../../utils/images';
 import ErrorComponent from './ErrorComponent';
 import Loader from './Loader';
 import TrendingNewsComponent from './TrendingNewsComponent';
+import {ReactNavigationProps} from '../../navigation/types';
 
 const AllTrendingNewsComponent = () => {
   const {data, error, isError, isLoading} = useGetTopHeadline();
-  const navigation: any = useNavigation();
+  const navigation = useNavigation<ReactNavigationProps['navigation']>();
   if (isLoading) {
     return <Loader />;
   }

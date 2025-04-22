@@ -1,4 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Linking, StyleSheet, View} from 'react-native';
 import {
@@ -9,13 +10,16 @@ import {
   Loader,
 } from '../components';
 import useNewsDetails from '../hooks/useNewsDetails';
+import RootStackParamList, {ReactNavigationProps} from '../navigation/types';
 import {responsiveHeight, responsiveSize} from '../utils/helper';
 import {icons} from '../utils/images';
 import {colors, fontSizes} from '../utils/Schema';
 
-const NewsDetailsScreen = ({route}: any) => {
-  const {articleId} = route.params;
-  const navigation: any = useNavigation();
+const NewsDetailsScreen = ({
+  route,
+}: NativeStackScreenProps<RootStackParamList, 'NewsDetailsScreen'>) => {
+  const {articleId}: any = route.params;
+  const navigation = useNavigation<ReactNavigationProps['navigation']>();
   const {data, isError, isLoading, error}: any = useNewsDetails(articleId);
 
   const handleOnPress = () => {
